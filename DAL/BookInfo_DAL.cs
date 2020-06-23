@@ -83,7 +83,6 @@ namespace DAL
             return list;
         }
 
-
         /// <summary>
         /// 查询BookInfo表
         /// </summary>

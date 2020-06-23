@@ -75,6 +75,7 @@ namespace Web
                 dgvHostory.RowHeadersDefaultCellStyle.ForeColor,
                 TextFormatFlags.VerticalCenter | TextFormatFlags.Right);
         }
+
         //CheckBox是否选中打钩 事件
         private void checkTime_CheckedChanged(object sender, EventArgs e)
         {
@@ -91,6 +92,7 @@ namespace Web
                 cboBorrowTimeType.Enabled = false;
             }
         }
+
         //单击查询
         private void btnSelect_Click(object sender, EventArgs e)
         {

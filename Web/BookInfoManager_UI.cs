@@ -44,7 +44,6 @@ namespace Web
                 node.ImageIndex = 0;
                 nod.Nodes.Add(node);
             }
-
             treeView1.ExpandAll();
         }
 
@@ -55,8 +54,6 @@ namespace Web
             string arraysHeaderText = @"图书编号,图书名称,登记时间,图书类型,作者,拼音码,翻译,语言,页数,价格,印刷版面,存放位置,ISBN码,版本,描述";
             //需要绑定数据库列名称的字符串
             string arraysName = @"BookId,BookName,TimeIn,BookTypeName,Author,PinYinCode,Translator,Language,BookNumber,Price,Layout,Address,ISBS,Versions,BookRemark";
-
-
             //自动生成columns
             autocoumns.AutoColumn(arraysHeaderText, arraysName, dataGridView1);
             dataGridView1.DataSource = bookInfo_bll.selectBookInfo1().Tables[0];
@@ -165,14 +162,11 @@ namespace Web
             {
                 //选中行的图书编号
                 BookId = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-
             }
             catch (Exception) { }
 
             //单击某行 历史记录表就显示相关的数据
             this.dgvHostory.DataSource = borrowReturn_bll.selectBorrowReturn(BookId).Tables[0];
-
-
             //DataGridView的总列数
             int rows = dataGridView1.Columns.Count;
 

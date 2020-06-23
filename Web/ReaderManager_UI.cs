@@ -45,6 +45,7 @@ namespace Web
             }
             treeView1.ExpandAll();
         }
+
         //读者管理窗体的加载事件
         private void ReaderManager_UI_Load(object sender, EventArgs e)
         {
@@ -77,7 +78,6 @@ namespace Web
             comboBox1.SelectedIndex = 0;
 
             #endregion
-
 
             //树状图的绑定
 
@@ -118,6 +118,7 @@ namespace Web
 
             #endregion
         }
+
         //TreeView节点选项改变事件
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
@@ -140,7 +141,6 @@ namespace Web
             }
         }
 
-
         private void btnExitColumn_Click(object sender, EventArgs e)
         {
             BookInfoExitRows_UI b = new BookInfoExitRows_UI();
@@ -153,6 +153,7 @@ namespace Web
         //{
 
         //}
+
         //当编辑绑定完 DataGridView所有单元格之后，执行绘制引发的事件
         private void dgvHeaderInfo_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -161,7 +162,6 @@ namespace Web
             {
                 //选中行的图书编号
                 ReaderId = dgvHeaderInfo.Rows[e.RowIndex].Cells[0].Value.ToString();
-
             }
             catch (Exception) { }
 

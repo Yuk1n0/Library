@@ -72,7 +72,6 @@ namespace Web
 
                 dgvInfo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
-
             com.AddColumn("选取", dgvInfo);
         }
 
@@ -83,7 +82,6 @@ namespace Web
             {
                 //选中行的编号
                 name = dgvInfo.Rows[e.RowIndex].Cells[0].Value.ToString();
-
             }
             catch (Exception) { }
 

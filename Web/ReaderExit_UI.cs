@@ -108,6 +108,7 @@ namespace Web
                 MessageBox.Show("修改失败！");
             }
         }
+
         //读者类型编辑
         private void button4_Click(object sender, EventArgs e)
         {
@@ -117,6 +118,7 @@ namespace Web
             a.readerManager = this.reader;
             a.ShowDialog();
         }
+
         //院系编辑
         private void button3_Click(object sender, EventArgs e)
         {
@@ -126,6 +128,7 @@ namespace Web
             a.readerManager = this.reader;
             a.ShowDialog();
         }
+
         //班级编辑
         private void button5_Click(object sender, EventArgs e)
         {
@@ -135,6 +138,5 @@ namespace Web
             a.readerManager = this.reader;
             a.ShowDialog();
         }
-
     }
 }

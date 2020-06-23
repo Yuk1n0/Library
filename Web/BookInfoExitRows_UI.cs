@@ -43,6 +43,7 @@ namespace Web
                 }
             }
         }
+
         //左移
         private void btnLeft_Click(object sender, EventArgs e)
         {
@@ -67,6 +68,7 @@ namespace Web
                 listBox2.Items.RemoveAt(index);
             }
         }
+
         //右移
         private void btnRight_Click(object sender, EventArgs e)
         {
@@ -83,7 +85,6 @@ namespace Web
                 }
             }
 
-
             ListBox.SelectedIndexCollection indices = listBox1.SelectedIndices;
             for (int i = indices.Count - 1; i >= 0; i--)
             {
@@ -97,6 +98,5 @@ namespace Web
         {
             this.Close();
         }
-
     }
 }

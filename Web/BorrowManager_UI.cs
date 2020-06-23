@@ -41,7 +41,6 @@ namespace Web
 
             #endregion
 
-
             #region dgvBorrow表的自动生成列
 
             //dataGridView3.AutoGenerateColumns = false;
@@ -67,7 +66,6 @@ namespace Web
             dgvBorrowed.DataSource = null;
             #endregion
 
-
             #region dgvBookInfo的自动生成列
 
             //需要添加列的列标题字符串
@@ -91,6 +89,7 @@ namespace Web
             dgvBookInfo.Columns[dgvBookInfo.Columns.Count - 8].Visible = false;
             #endregion
         }
+
         private void button5_MouseEnter(object sender, EventArgs e)
         {
             ((Button)sender).FlatStyle = FlatStyle.Standard;
@@ -100,6 +99,7 @@ namespace Web
         {
             ((Button)sender).FlatStyle = FlatStyle.Flat;
         }
+
         Com autocoumns = new Com();
         Reader_BLL reader_bll = new Reader_BLL();
         BorrowReturn_BLL borrowReturn_bll = new BorrowReturn_BLL();
@@ -111,6 +111,7 @@ namespace Web
             string ReaderId = txtReaderId.Text.Trim();
             dgvReaderInfo.DataSource = reader_bll.selectReader("ReaderId", ReaderId).Tables[0];
         }
+
         //重新绑定数据是发生
         private void dgvReaderInfo_DataSourceChanged(object sender, EventArgs e)
         {
@@ -127,6 +128,7 @@ namespace Web
                 labBorrowBook.Text = ".....正在借阅的图书";
             }
         }
+
         //根据图书编号改变事件
         private void txtBookId_TextChanged(object sender, EventArgs e)
         {
@@ -141,7 +143,6 @@ namespace Web
             {
                 //选中行的借阅编号
                 BorrowReturnId = (int)dgvBorrowed.Rows[e.RowIndex].Cells[0].Value;
-
             }
             catch (Exception) { }
 
@@ -185,6 +186,7 @@ namespace Web
                 }
             }
         }
+
         //借书
         private void dgvBookInfo_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -193,7 +195,6 @@ namespace Web
             {
                 //选中行的图书编号
                 BookId = dgvBookInfo.Rows[e.RowIndex].Cells[0].Value.ToString();
-
             }
             catch (Exception) { }
 
@@ -216,14 +217,11 @@ namespace Web
                 b.RenewCount = 0;
                 b.BorrowRemark = "";
 
-
                 DialogResult result = MessageBox.Show("确定借书吗？", "提醒", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (result == DialogResult.OK)
                 {
                     if (borrowReturn_bll.BorrowBook(b) == 0)
                     {
-
-
                         MessageBox.Show("借书成功！");
                         //刷新图书借还表
                         dgvReaderInfo_DataSourceChanged(null, null);
@@ -237,9 +235,9 @@ namespace Web
                         MessageBox.Show("借书失败！");
                     }
                 }
-
             }
         }
+
         //查询读者
         private void btnSelctReader_Click(object sender, EventArgs e)
         {

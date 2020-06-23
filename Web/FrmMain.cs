@@ -48,7 +48,6 @@ namespace Web
             form.TopLevel = false;
             page.Controls.Add(form);
             form.Show();
-
         }
 
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -92,11 +91,13 @@ namespace Web
         {
             this.tabControl.SelectedIndex = 0;
         }
+
         //读者管理
         private void toolStripButtonReaderManager_Click(object sender, EventArgs e)
         {
             this.tabControl.SelectedIndex = 1;
         }
+
         //借还管理
         private void toolStripButtonBorrowReturn_Click(object sender, EventArgs e)
         {
@@ -124,8 +125,6 @@ namespace Web
                 MessageBox.Show("只有超级管理员能使用此功能");
             }
         }
-
-
 
         private void menuStripBorrow_Click(object sender, EventArgs e)
         {

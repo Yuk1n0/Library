@@ -19,6 +19,7 @@ namespace Web
             InitializeComponent();
         }
         Admin_BLL aa = new Admin_BLL();
+
         //窗体加载
         private void Login_Load(object sender, EventArgs e)
         {
@@ -26,6 +27,7 @@ namespace Web
             cboType.Items.Add("普通管理员");
             this.cboType.SelectedIndex = 0;
         }
+
         //取消
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -33,6 +35,7 @@ namespace Web
             if (result == DialogResult.OK)
                 Application.Exit();
         }
+
         //登录
         private void btnLongin_Click(object sender, EventArgs e)
         {

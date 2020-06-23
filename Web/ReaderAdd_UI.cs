@@ -59,6 +59,7 @@ namespace Web
         {
             Close();
         }
+
         //添加读者类型
         private void btnReaderType_Click(object sender, EventArgs e)
         {
@@ -68,6 +69,7 @@ namespace Web
             a.readerAdd = this;
             a.ShowDialog();
         }
+
         //添加院系
         private void btnDepartment_Click(object sender, EventArgs e)
         {
@@ -77,6 +79,7 @@ namespace Web
             a.readerAdd = this;
             a.ShowDialog();
         }
+
         //添加班级
         private void btnClass_Click(object sender, EventArgs e)
         {
@@ -86,6 +89,7 @@ namespace Web
             a.readerAdd = this;
             a.ShowDialog();
         }
+
         //新增读者信息
         private void btnAdd_Click(object sender, EventArgs e)
         {

@@ -47,7 +47,6 @@ namespace Web
                 }
             }
 
-
             #region 图书类型表的绑定
 
             string HeaderText = "ID,图书类型";
