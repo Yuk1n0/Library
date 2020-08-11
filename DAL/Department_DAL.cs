@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Model;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -26,10 +22,10 @@ namespace DAL
             reader.Close();
             return list;
         }
+
         public DataSet selectDepartment1()
         {
             string sql = "select * from Department";
-
             return DBhelp.Create().ExecuteAdater(sql); ;
         }
 
@@ -47,7 +43,8 @@ namespace DAL
             d.DepartmentId = (int)sp[0].Value;
             return (int)sp[2].Value;
         }
-        //删除院系
+
+        // 删除院系
         public int deleteDepartment(int DepartmentId)
         {
             string sql = @"delete from Reader where DepartmentId=@DepartmentId
@@ -58,7 +55,7 @@ namespace DAL
             return DBhelp.Create().ExecuteNonQuery(sql, sp: sp);
         }
 
-        //修改院系
+        // 修改院系
         public int updateDepartment(Department d)
         {
             string sql = "update Department set DepartmentName=@DepartmentName where DepartmentId=@DepartmentId";

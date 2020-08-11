@@ -1,4 +1,4 @@
-﻿namespace Web
+namespace Web
 {
     partial class FrmMain
     {
@@ -240,7 +240,6 @@
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion

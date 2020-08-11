@@ -1,4 +1,4 @@
-﻿namespace Web
+namespace Web
 {
     partial class BookInfoAdd_UI
     {
@@ -411,7 +411,6 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
-
         }
 
         #endregion

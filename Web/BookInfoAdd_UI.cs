@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Model;
 using BLL;
 using Common;
+using Model;
+using System;
+using System.Windows.Forms;
 
 namespace Web
 {
@@ -40,6 +33,7 @@ namespace Web
             this.cboBookTypeId.DisplayMember = "BookTypeName";
             this.cboBookTypeId.ValueMember = "BookTypeId";
         }
+
         /// <summary>
         /// 添加图书信息
         /// </summary>
@@ -47,7 +41,7 @@ namespace Web
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
-            //图书编号必须唯一
+            // 图书编号必须唯一
             int rows = this.manager.dataGridView1.RowCount;
             lab.Text = "";
             for (int i = 0; i < rows; i++)
@@ -60,7 +54,7 @@ namespace Web
                 }
             }
 
-            //创建添加的对象
+            // 创建添加的对象
             BookInfo book = new BookInfo();
             book.BookId = txtBookId.Text.Trim();
             book.BookName = txtBookName.Text.Trim();
@@ -81,10 +75,9 @@ namespace Web
             if (bookInfo.AddBookInfo(book) > 0)
             {
                 MessageBox.Show("添加信息成功！");
-                //图书类型信息的绑定
+                // 图书类型信息的绑定
                 manager.dataGridView1.DataSource = manager.bookInfo_bll.selectBookInfo1().Tables[0];
-
-                //自动找到刚刚添加成功的新行，并选中
+                // 自动找到刚刚添加成功的新行，并选中
                 com.AutoFindRow(txtBookId.Text.Trim(), this.manager.dataGridView1);
             }
             else

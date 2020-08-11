@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using BLL;
-using Model;
 using Common;
+using Model;
+using System;
+using System.Windows.Forms;
 
 namespace Web
 {
@@ -19,21 +12,21 @@ namespace Web
         {
             InitializeComponent();
         }
-        public BookInfoManager_UI Manager = null;
-        public BookInfoExit_UI bookInfoExit = null;
         public BookInfoAdd_UI bookInfoAdd = null;
+        public BookInfoExit_UI bookInfoExit = null;
+        public BookInfoManager_UI Manager = null;
 
-        public ReaderManager_UI readerManager = null;
-        public ReaderExit_UI readerExit = null;
         public ReaderAdd_UI readerAdd = null;
+        public ReaderExit_UI readerExit = null;
+        public ReaderManager_UI readerManager = null;
 
         public BookType_BLL booktype = new BookType_BLL();
-        public ReaderType_BLL readerType_bll = new ReaderType_BLL();
-        public Department_BLL department_bll = new Department_BLL();
         public Class_BLL class_bll = new Class_BLL();
-        Com auto = new Com();
+        public Department_BLL department_bll = new Department_BLL();
+        public ReaderType_BLL readerType_bll = new ReaderType_BLL();
 
         public string tabName = null;
+        Com auto = new Com();
 
         private void Add_Load(object sender, EventArgs e)
         {
@@ -53,7 +46,7 @@ namespace Web
             string DataPropertyNames = "BookTypeId,BookTypeName";
             //this.dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            //自动生成列
+            // 自动生成列
             auto.AutoColumn(HeaderText, DataPropertyNames, this.dataGridView1);
             auto.AddColumn("修改", this.dataGridView1);
             auto.AddColumn("删除", this.dataGridView1);
@@ -69,7 +62,7 @@ namespace Web
             string DataPropertyNames1 = "ReaderTypeId,ReaderTypeName";
             //this.dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            //自动生成列
+            // 自动生成列
             auto.AutoColumn(HeaderText1, DataPropertyNames1, this.dataGridView2);
             auto.AddColumn("修改", this.dataGridView2);
             auto.AddColumn("删除", this.dataGridView2);
@@ -85,7 +78,7 @@ namespace Web
             string DataPropertyNames2 = "DepartmentId,DepartmentName";
             //this.dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            //自动生成列
+            // 自动生成列
             auto.AutoColumn(HeaderText2, DataPropertyNames2, this.dataGridView3);
             auto.AddColumn("修改", this.dataGridView3);
             auto.AddColumn("删除", this.dataGridView3);
@@ -101,7 +94,7 @@ namespace Web
             string DataPropertyNames3 = "ClassId,ClassName";
             //this.dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            //自动生成列
+            // 自动生成列
             auto.AutoColumn(HeaderText3, DataPropertyNames3, this.dataGridView4);
             auto.AddColumn("修改", this.dataGridView4);
             auto.AddColumn("删除", this.dataGridView4);
@@ -113,7 +106,7 @@ namespace Web
         }
         Com com = new Com();
 
-        //添加图书类型
+        // 添加图书类型
         private void button1_Click(object sender, EventArgs e)
         {
             BookType type = new BookType();
@@ -122,8 +115,7 @@ namespace Web
             {
                 MessageBox.Show("添加成功！");
                 this.dataGridView1.DataSource = booktype.selectBookType1().Tables[0];
-
-                //自动找到刚刚添加成功的新行，并选中
+                // 自动找到刚刚添加成功的新行，并选中
                 com.AutoFindRow(type.BookTypeId.ToString(), this.dataGridView1);
             }
             else
@@ -132,7 +124,7 @@ namespace Web
             }
         }
 
-        //添加读者类型
+        // 添加读者类型
         private void button2_Click(object sender, EventArgs e)
         {
             ReaderType r = new ReaderType();
@@ -141,8 +133,7 @@ namespace Web
             {
                 MessageBox.Show("添加成功！");
                 this.dataGridView2.DataSource = readerType_bll.selectReaderType1().Tables[0];
-
-                //自动找到刚刚添加成功的新行，并选中
+                // 自动找到刚刚添加成功的新行，并选中
                 com.AutoFindRow(r.ReaderTypeId.ToString(), this.dataGridView2);
             }
             else
@@ -151,7 +142,7 @@ namespace Web
             }
         }
 
-        //添加院系
+        // 添加院系
         private void button3_Click(object sender, EventArgs e)
         {
             Department d = new Department();
@@ -160,8 +151,7 @@ namespace Web
             {
                 MessageBox.Show("添加成功！");
                 this.dataGridView3.DataSource = department_bll.selectDepartment1().Tables[0];
-
-                //自动找到刚刚添加成功的新行，并选中
+                // 自动找到刚刚添加成功的新行，并选中
                 com.AutoFindRow(d.DepartmentId.ToString(), this.dataGridView3);
             }
             else
@@ -170,7 +160,7 @@ namespace Web
             }
         }
 
-        //添加班级
+        // 添加班级
         private void button4_Click(object sender, EventArgs e)
         {
             Class c = new Class();
@@ -179,8 +169,7 @@ namespace Web
             {
                 MessageBox.Show("添加成功！");
                 this.dataGridView4.DataSource = class_bll.selectClass1().Tables[0];
-
-                //自动找到刚刚添加成功的新行，并选中
+                // 自动找到刚刚添加成功的新行，并选中
                 com.AutoFindRow(c.ClassId.ToString(), this.dataGridView4);
             }
             else
@@ -189,7 +178,7 @@ namespace Web
             }
         }
 
-        //当编辑绑定完 DataGridView所有单元格之后，执行绘制引发的事件
+        // 当编辑绑定完 DataGridView所有单元格之后，执行绘制引发的事件
         private void dataGridView2_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             System.Drawing.Rectangle rectangle = new System.Drawing.Rectangle(e.RowBounds.Location.X,
@@ -204,10 +193,10 @@ namespace Web
                 TextFormatFlags.VerticalCenter | TextFormatFlags.Right);
         }
 
-        //图书类型表的单元格单击事件
+        // 图书类型表的单元格单击事件
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //选中行的图书编号
+            // 选中行的图书编号
             int str = -1;
             try
             {
@@ -215,10 +204,10 @@ namespace Web
             }
             catch (Exception) { }
 
-            //DataGridView的总列数
+            // DataGridView的总列数
             int rows = dataGridView1.Columns.Count;
 
-            if (e.ColumnIndex == rows - 2)//修改
+            if (e.ColumnIndex == rows - 2)// 修改
             {
                 BookType t = new BookType();
                 t.BookTypeId = str;
@@ -229,7 +218,7 @@ namespace Web
                 exit.Text = "修改图书类型";
                 exit.ShowDialog();
             }
-            else if (e.ColumnIndex == rows - 1)//删除
+            else if (e.ColumnIndex == rows - 1)// 删除
             {
                 DialogResult result = MessageBox.Show("确定删除吗？", "提醒", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (result == DialogResult.OK)
@@ -246,10 +235,10 @@ namespace Web
             }
         }
 
-        //读者类型表的单元格单击事件
+        // 读者类型表的单元格单击事件
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //选中行的图书编号
+            // 选中行的图书编号
             int str = -1;
             try
             {
@@ -257,10 +246,10 @@ namespace Web
             }
             catch (Exception) { }
 
-            //DataGridView的总列数
+            // DataGridView的总列数
             int rows = dataGridView2.Columns.Count;
 
-            if (e.ColumnIndex == rows - 2)//修改
+            if (e.ColumnIndex == rows - 2)// 修改
             {
                 ReaderType r = new ReaderType();
                 r.ReaderTypeId = str;
@@ -271,7 +260,7 @@ namespace Web
                 exit.Text = "修改读者类型";
                 exit.ShowDialog();
             }
-            else if (e.ColumnIndex == rows - 1)//删除
+            else if (e.ColumnIndex == rows - 1)// 删除
             {
                 DialogResult result = MessageBox.Show("确定删除吗？", "提醒", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (result == DialogResult.OK)
@@ -288,10 +277,10 @@ namespace Web
             }
         }
 
-        //院系表的单元格单击事件
+        // 院系表的单元格单击事件
         private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //选中行的图书编号
+            // 选中行的图书编号
             int str = -1;
             try
             {
@@ -299,10 +288,10 @@ namespace Web
             }
             catch (Exception) { }
 
-            //DataGridView的总列数
+            // DataGridView的总列数
             int rows = dataGridView3.Columns.Count;
 
-            if (e.ColumnIndex == rows - 2)//修改
+            if (e.ColumnIndex == rows - 2)// 修改
             {
                 Department d = new Department();
                 d.DepartmentId = str;
@@ -313,7 +302,7 @@ namespace Web
                 exit.Text = "修改院系";
                 exit.ShowDialog();
             }
-            else if (e.ColumnIndex == rows - 1)//删除
+            else if (e.ColumnIndex == rows - 1)// 删除
             {
                 DialogResult result = MessageBox.Show("确定删除吗？", "提醒", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (result == DialogResult.OK)
@@ -330,10 +319,10 @@ namespace Web
             }
         }
 
-        //班级表的单元格单击事件
+        // 班级表的单元格单击事件
         private void dataGridView4_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //选中行的图书编号
+            // 选中行的图书编号
             int str = -1;
             try
             {
@@ -341,10 +330,10 @@ namespace Web
             }
             catch (Exception) { }
 
-            //DataGridView的总列数
+            // DataGridView的总列数
             int rows = dataGridView4.Columns.Count;
 
-            if (e.ColumnIndex == rows - 2)//修改
+            if (e.ColumnIndex == rows - 2)// 修改
             {
                 Class c = new Class();
                 c.ClassId = str;
@@ -355,7 +344,7 @@ namespace Web
                 exit.Text = "修改班级";
                 exit.ShowDialog();
             }
-            else if (e.ColumnIndex == rows - 1)//删除
+            else if (e.ColumnIndex == rows - 1)// 删除
             {
                 DialogResult result = MessageBox.Show("确定删除吗？", "提醒", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (result == DialogResult.OK)
@@ -372,7 +361,7 @@ namespace Web
             }
         }
 
-        //窗口关闭时为了刷新前一个窗体的下拉菜单
+        // 窗口关闭时为了刷新前一个窗体的下拉菜单
         private void Add_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (bookInfoExit != null)

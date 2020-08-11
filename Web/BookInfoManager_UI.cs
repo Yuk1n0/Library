@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using BLL;
 using Common;
 using Model;
-using System.Reflection;
-using System.Data.SqlClient;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Web
 {
@@ -22,20 +14,19 @@ namespace Web
             InitializeComponent();
         }
         public BookInfo_BLL bookInfo_bll = new BookInfo_BLL();
+        public BorrowReturn_BLL borrowReturn_bll = new BorrowReturn_BLL();
         BookType_BLL bookType_bll = new BookType_BLL();
         Com autocoumns = new Com();
-        public BorrowReturn_BLL borrowReturn_bll = new BorrowReturn_BLL();
 
-        //树绑定
+        // 树绑定
         public void TreeViewBand()
         {
-            //图书类型的集合
+            // 图书类型的集合
             List<BookType> list1 = bookType_bll.selectBookType();
             TreeNode nod = new TreeNode();
             nod.Text = "图书类型";
             nod.ImageIndex = 0;
             treeView1.Nodes.Add(nod);
-
             foreach (BookType k in list1)
             {
                 TreeNode node = new TreeNode();
@@ -50,19 +41,19 @@ namespace Web
         private void BookInfoManager_UI_Load(object sender, EventArgs e)
         {
             #region DataGridView1绑定
-            //需要添加列的列标题字符串
+            // 需要添加列的列标题字符串
             string arraysHeaderText = @"图书编号,图书名称,登记时间,图书类型,作者,拼音码,翻译,语言,页数,价格,印刷版面,存放位置,ISBN码,版本,描述";
-            //需要绑定数据库列名称的字符串
+            // 需要绑定数据库列名称的字符串
             string arraysName = @"BookId,BookName,TimeIn,BookTypeName,Author,PinYinCode,Translator,Language,BookNumber,Price,Layout,Address,ISBS,Versions,BookRemark";
-            //自动生成columns
+            // 自动生成columns
             autocoumns.AutoColumn(arraysHeaderText, arraysName, dataGridView1);
             dataGridView1.DataSource = bookInfo_bll.selectBookInfo1().Tables[0];
             autocoumns.AddColumn("修改", dataGridView1);
             autocoumns.AddColumn("删除", dataGridView1);
 
-            //DataGridView1数据集绑定
+            // DataGridView1数据集绑定
             this.dataGridView1.DataSource = bookInfo_bll.selectBookInfo1().Tables[0];
-            //窗体加载时默认隐藏的列
+            // 窗体加载时默认隐藏的列
             this.dataGridView1.Columns[14].Visible = false;
             this.dataGridView1.Columns[13].Visible = false;
             this.dataGridView1.Columns[12].Visible = false;
@@ -95,11 +86,12 @@ namespace Web
 
             string Header1 = @"图书编号,图书名称,读者编号,读者名称,借出时间,书应归还时间,实际归还时间,应付罚金,续借次数,借还描述";
             string PropertyNames1 = @"BookId,BookName,ReaderId,ReaderName,BorrowTime,ReturnTime,FactReturnTime,Fine,RenewCount,BorrowRemark";
-            //自动生成columns
+            // 自动生成columns
             autocoumns.AutoColumn(Header1, PropertyNames1, dgvHostory);
 
             #endregion
         }
+
         /// <summary>
         /// 树控件更改选定内容的事件
         /// </summary>
@@ -116,7 +108,7 @@ namespace Web
                 int index = (int)treeView1.SelectedNode.Tag;
                 dataGridView1.DataSource = bookInfo_bll.selectBookInfo1(index).Tables[0];
             }
-            //如果读者信息表中查不到一条数据，相关表的数据也清空
+            // 如果读者信息表中查不到一条数据，相关表的数据也清空
             if (dataGridView1.Rows.Count == 0)
             {
                 dgvHostory.DataSource = null;
@@ -160,14 +152,14 @@ namespace Web
         {
             try
             {
-                //选中行的图书编号
+                // 选中行的图书编号
                 BookId = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
             }
             catch (Exception) { }
 
-            //单击某行 历史记录表就显示相关的数据
+            // 单击某行 历史记录表就显示相关的数据
             this.dgvHostory.DataSource = borrowReturn_bll.selectBorrowReturn(BookId).Tables[0];
-            //DataGridView的总列数
+            // DataGridView的总列数
             int rows = dataGridView1.Columns.Count;
 
             if (e.ColumnIndex == rows - 2)//修改
@@ -177,16 +169,16 @@ namespace Web
                 b.BookId = BookId;
                 b.ShowDialog();
             }
-            else if (e.ColumnIndex == rows - 1)//删除
+            else if (e.ColumnIndex == rows - 1)// 删除
             {
                 DialogResult result = MessageBox.Show("确定删除吗？", "提醒", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (result == DialogResult.OK)
                 {
                     if (bookInfo_bll.DeleteBookInfo(BookId) > 0)
                     {
-                        //调用查询按钮刷新图书信息表
+                        // 调用查询按钮刷新图书信息表
                         btnSelect_Click(null, null);
-                        //历史记录表中的数据引用着图书信息表的数据，删除图书信息应该刷新历史记录表
+                        // 历史记录表中的数据引用着图书信息表的数据，删除图书信息应该刷新历史记录表
                         this.dgvHostory.DataSource = borrowReturn_bll.selectBorrowReturn(BookId).Tables[0];
                     }
                     else
@@ -196,6 +188,7 @@ namespace Web
                 }
             }
         }
+
         /// <summary>
         /// 点击查询按钮
         /// </summary>
@@ -216,7 +209,6 @@ namespace Web
             }
             else
             {
-
                 for (int i = 0; i < columns.Count - 2; i++)
                 {
                     if (comboBox1.SelectedItem.ToString() == columns[i].HeaderText)
@@ -228,14 +220,14 @@ namespace Web
                     }
                 }
             }
-
-            //如果读者信息表中查不到一条数据，相关表的数据也清空
+            // 如果读者信息表中查不到一条数据，相关表的数据也清空
             if (dataGridView1.Rows.Count == 0)
             {
                 dgvHostory.DataSource = null;
                 return;
             }
         }
+
         public BookInfoAdd_UI bookInfoAdd;
         public void btnAddBookInfo_Click(object sender, EventArgs e)
         {

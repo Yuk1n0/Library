@@ -1,4 +1,4 @@
-﻿namespace Web
+namespace Web
 {
     partial class Exit
     {
@@ -73,7 +73,6 @@
             this.Load += new System.EventHandler(this.Exit_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion

@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using BLL;
-using Model;
 using Common;
+using Model;
+using System;
+using System.Windows.Forms;
 
 namespace Web
 {
@@ -19,6 +12,7 @@ namespace Web
         {
             InitializeComponent();
         }
+
         private void button3_MouseEnter(object sender, EventArgs e)
         {
             ((Button)sender).FlatStyle = FlatStyle.Standard;
@@ -29,27 +23,26 @@ namespace Web
             ((Button)sender).FlatStyle = FlatStyle.Flat;
         }
         public ReaderManager_UI reader = null;
-
-        Reader_BLL reader_bll = new Reader_BLL();
-        ReaderType_BLL readerType_bll = new ReaderType_BLL();
-        Department_BLL department_bll = new Department_BLL();
         Class_BLL class_bll = new Class_BLL();
         Com com = new Com();
+        Department_BLL department_bll = new Department_BLL();
+        Reader_BLL reader_bll = new Reader_BLL();
+        ReaderType_BLL readerType_bll = new ReaderType_BLL();
 
-        //加载
+        // 加载
         private void ReaderAdd_UI_Load(object sender, EventArgs e)
         {
-            //读者类型的下拉框绑定
+            // 读者类型的下拉框绑定
             cboReaderType.DataSource = readerType_bll.selectReaderType();
             cboReaderType.DisplayMember = "ReaderTypeName";
             cboReaderType.ValueMember = "ReaderTypeId";
 
-            //院系的下拉框绑定
+            // 院系的下拉框绑定
             cboDepartment.DataSource = department_bll.selectDepartment();
             cboDepartment.DisplayMember = "DepartmentName";
             cboDepartment.ValueMember = "DepartmentId";
 
-            //班级的下拉框绑定
+            // 班级的下拉框绑定
             cboClass.DataSource = class_bll.selectClass();
             cboClass.DisplayMember = "ClassName";
             cboClass.ValueMember = "ClassId";
@@ -60,7 +53,7 @@ namespace Web
             Close();
         }
 
-        //添加读者类型
+        // 添加读者类型
         private void btnReaderType_Click(object sender, EventArgs e)
         {
             Add a = new Add();
@@ -70,7 +63,7 @@ namespace Web
             a.ShowDialog();
         }
 
-        //添加院系
+        // 添加院系
         private void btnDepartment_Click(object sender, EventArgs e)
         {
             Add a = new Add();
@@ -80,7 +73,7 @@ namespace Web
             a.ShowDialog();
         }
 
-        //添加班级
+        // 添加班级
         private void btnClass_Click(object sender, EventArgs e)
         {
             Add a = new Add();
@@ -90,10 +83,10 @@ namespace Web
             a.ShowDialog();
         }
 
-        //新增读者信息
+        // 新增读者信息
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            //图书编号必须唯一
+            // 图书编号必须唯一
             int rows = reader.dgvHeaderInfo.RowCount;
             lab.Text = "";
             for (int i = 0; i < rows; i++)
@@ -105,6 +98,7 @@ namespace Web
                     return;
                 }
             }
+
             Reader r = new Reader();
             r.ReaderId = txtReaderId.Text.Trim();
             r.ReaderName = txtReaderName.Text.Trim();
@@ -124,10 +118,9 @@ namespace Web
             if (reader_bll.addReader(r) == 0)
             {
                 MessageBox.Show("新增成功！");
-                //单击查询 刷新读者信息表
+                // 单击查询 刷新读者信息表
                 reader.btnSelect_Click(null, null);
-
-                //自动找到刚刚添加成功的新行，并选中
+                // 自动找到刚刚添加成功的新行，并选中
                 com.AutoFindRow(txtReaderId.Text.Trim(), reader.dgvHeaderInfo);
             }
             else

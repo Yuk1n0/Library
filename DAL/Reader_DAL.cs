@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Model;
-using System.Data.SqlClient;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace DAL
 {
     public class Reader_DAL
     {
-        //无条件查询读者信息
+        // 无条件查询读者信息
         public DataSet selectReader()
         {
             string sql = @"select ReaderId,ReaderName,TimeIn,TimeOut,ReaderTypeName,DepartmentName,ClassName,IdentityCard,Gender,Special,Phone,Email,Address,ReaderRemark from Reader 
@@ -21,10 +17,9 @@ namespace DAL
             return DBhelp.Create().ExecuteAdater(sql);
         }
 
-        //根据读者类型ID查询的读者信息
+        // 根据读者类型ID查询的读者信息
         public DataSet selectReader(int ReaderTypeId)
         {
-
             string sql = @"select ReaderId,ReaderName,TimeIn,TimeOut,ReaderTypeName,DepartmentName,ClassName,IdentityCard,Gender,Special,Phone,Email,Address,ReaderRemark from Reader 
                             inner join ReaderType on ReaderType.ReaderTypeId=Reader.ReaderTypeId
                             inner join Department on Department.DepartmentId=Reader.DepartmentId
@@ -36,10 +31,9 @@ namespace DAL
             return DBhelp.Create().ExecuteAdater(sql, sp);
         }
 
-        //根据ID查询的读者信息
+        // 根据ID查询的读者信息
         public List<Reader> selectReader1(string ReaderId)
         {
-
             string sql = @"select ReaderId,ReaderName,TimeIn,TimeOut,ReaderTypeId,DepartmentId,ClassId,IdentityCard,
                             Gender,Special,Phone,Email,Address,ReaderRemark from Reader";
             SqlParameter[] sp ={
@@ -70,10 +64,9 @@ namespace DAL
             return list;
         }
 
-        //根据查询内容和条件查询的读者信息
+        // 根据查询内容和条件查询的读者信息
         public DataSet selectReader(string A, string B)
         {
-
             string sql = string.Format(@"select ReaderId,ReaderName,TimeIn,TimeOut,ReaderTypeName,DepartmentName,ClassName,IdentityCard,Gender,Special,Phone,Email,Address,ReaderRemark from Reader 
                             inner join ReaderType on ReaderType.ReaderTypeId=Reader.ReaderTypeId
                             inner join Department on Department.DepartmentId=Reader.DepartmentId
@@ -83,7 +76,7 @@ namespace DAL
         }
 
 
-        //根据查询条件查询的读者信息
+        // 根据查询条件查询的读者信息
         public DataSet selectReader(List<string> list, string B)
         {
             string sql = "";
@@ -109,7 +102,7 @@ namespace DAL
             return DBhelp.Create().ExecuteAdater(sql);
         }
 
-        //删除读者信息
+        // 删除读者信息
         public int deleteReader(string ReaderId)
         {
             string sql = @"
@@ -121,7 +114,7 @@ namespace DAL
             return DBhelp.Create().ExecuteNonQuery(sql, sp: sp);
         }
 
-        //修改读者信息
+        // 修改读者信息
         public int updateReader(Reader reader)
         {
             string sql = @"update Reader set ReaderName=@ReaderName,TimeIn=@TimeIn,TimeOut=@TimeOut,ReaderTypeId=@ReaderTypeId,
@@ -146,7 +139,7 @@ namespace DAL
             return DBhelp.Create().ExecuteNonQuery(sql, sp: sp);
         }
 
-        //添加读者信息
+        // 添加读者信息
         public int addReader(Reader r)
         {
             string sql = "proc_AddReader";
@@ -172,7 +165,7 @@ namespace DAL
             return (int)sp[sp.Length - 1].Value;
         }
 
-        //返回读者编号，读者姓名
+        // 返回读者编号，读者姓名
         public List<Reader> selectReaderId(string ReaderId)
         {
             string sql = "select ReaderId,ReaderName from Reader where ReaderId like '%'+@ReaderId+'%' ";

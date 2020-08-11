@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using DAL;
-using Model;
-using Common;
 using BLL;
+using Common;
+using Model;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Web
 {
@@ -20,8 +13,8 @@ namespace Web
         {
             InitializeComponent();
         }
-        public string BookId = null;
         public BookInfoManager_UI manager = null;
+        public string BookId = null;
         Com com = new Com();
 
         private void button3_MouseEnter(object sender, EventArgs e)
@@ -59,6 +52,7 @@ namespace Web
             txtVersions.Text = list[0].Versions;
             txtBookRemark.Text = list[0].BookRemark;
         }
+
         /// <summary>
         /// 添加图书分类
         /// </summary>
@@ -72,6 +66,7 @@ namespace Web
             a.Manager = this.manager;
             a.ShowDialog();
         }
+
         /// <summary>
         /// 保存修改信息
         /// </summary>
@@ -79,7 +74,7 @@ namespace Web
         /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //创建添加的对象
+            // 创建添加的对象
             BookInfo book = new BookInfo();
             book.BookId = txtBookId.Text.Trim();
             book.BookName = txtBookName.Text.Trim();
@@ -100,10 +95,9 @@ namespace Web
             if (bookInfo.ExitBookInfo(book) > 0)
             {
                 MessageBox.Show("修改信息成功！");
-                //单击查询
+                // 单击查询
                 manager.btnSelect_Click(null, null);
-
-                //自动找到刚刚修改成功的行，并选中
+                // 自动找到刚刚修改成功的行，并选中
                 com.AutoFindRow(txtBookId.Text.Trim(), this.manager.dataGridView1);
             }
             else

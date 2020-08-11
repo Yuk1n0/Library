@@ -1,11 +1,6 @@
-﻿using Model;
-using System;
-using System.Collections.Generic;
+using Model;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL
 {
@@ -20,6 +15,7 @@ namespace DAL
             string sql = @"select * from Admin";
             return DBhelp.Create().ExecuteAdater(sql);
         }
+
         /// <summary>
         /// 删除管理员
         /// </summary>
@@ -33,6 +29,7 @@ namespace DAL
                               };
             return DBhelp.Create().ExecuteNonQuery(sql, sp: sp);
         }
+
         /// <summary>
         /// 修改管理员
         /// </summary>
@@ -49,6 +46,7 @@ namespace DAL
                                 };
             return DBhelp.Create().ExecuteNonQuery(sql, sp: sp);
         }
+
         /// <summary>
         /// 添加管理员
         /// </summary>

@@ -1,4 +1,4 @@
-﻿namespace Web
+namespace Web
 {
     partial class ReaderAdd_UI
     {
@@ -396,7 +396,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-
         }
 
         #endregion

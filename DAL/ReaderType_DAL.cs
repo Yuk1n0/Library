@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Model;
-using System.Data.SqlClient;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace DAL
 {
     public class ReaderType_DAL
     {
-        //查询全部的读者类型
+        // 查询全部的读者类型
         public List<ReaderType> selectReaderType()
         {
             List<ReaderType> list = new List<ReaderType>();
@@ -28,14 +24,14 @@ namespace DAL
             return list;
         }
 
-        //查询全部的读者类型
+        // 查询全部的读者类型
         public DataSet selectReaderType1()
         {
             string sql = @"select * from ReaderType";
             return DBhelp.Create().ExecuteAdater(sql);
         }
 
-        //添加读者类型
+        // 添加读者类型
         public int addReaderType(ReaderType r)
         {
             string sql = "proc_addReaderType";
@@ -51,7 +47,7 @@ namespace DAL
             return (int)sp[2].Value;
         }
 
-        //删除读者类型
+        // 删除读者类型
         public int deleteReader(int ReaderTypeId)
         {
             string sql = @"delete from BorrowReturn where ReaderId in(select ReaderId from Reader where ReaderTypeId=@ReaderTypeId)
@@ -63,7 +59,7 @@ namespace DAL
             return DBhelp.Create().ExecuteNonQuery(sql, sp: sp);
         }
 
-        //修改读者类型
+        // 修改读者类型
         public int updateReaderType(ReaderType r)
         {
             string sql = "update ReaderType set ReaderTypeName=@ReaderTypeName where ReaderTypeId=@ReaderTypeId";

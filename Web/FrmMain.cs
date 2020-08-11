@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Model;
-using System.Threading;
+using System;
+using System.Windows.Forms;
 
 namespace Web
 {
@@ -21,24 +13,26 @@ namespace Web
         public Admin admin = null;
         BookInfoManager_UI book;
         ReaderManager_UI reader;
+
         private void FrmMain_Load(object sender, EventArgs e)
         {
             this.toolStripStatusLabel.Text = "状态：" + admin.LoginType + "\"" + admin.LoginId + "\"已登录.";
-            //图书管理窗体的绑定
+
+            // 图书管理窗体的绑定
             book = new BookInfoManager_UI();
             Control.CheckForIllegalCrossThreadCalls = false;
             banding(book, tabPage1);
 
-            //读者管理窗体的绑定
+            // 读者管理窗体的绑定
             reader = new ReaderManager_UI();
             reader.book = book;
             banding(reader, tabPage2);
 
-            //借还历史记录窗体的绑定
+            // 借还历史记录窗体的绑定
             banding(new BorrowHostory_UI(), tabPage3);
         }
 
-        //TabControl的TabPage绑定窗体的公共方法
+        // TabControl的TabPage绑定窗体的公共方法
         public void banding(Form form, TabPage page)
         {
             page.Controls.Clear();
@@ -55,7 +49,7 @@ namespace Web
             Application.Exit();
         }
 
-        //menuStrip新增图书
+        // menuStrip新增图书
         private void menuStripAddBookInfo_Click(object sender, EventArgs e)
         {
             book.btnAddBookInfo_Click(null, null);
@@ -66,6 +60,7 @@ namespace Web
             BorrowManager_UI b = new BorrowManager_UI();
             b.ShowDialog();
         }
+
         private void menuStripAddReaderInfo_Click(object sender, EventArgs e)
         {
             reader.btnAddReaderInfo_Click(null, null);
@@ -78,6 +73,7 @@ namespace Web
             a.Manager = this.book;
             a.ShowDialog();
         }
+
         private void 读者类型管理ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Add a = new Add();
@@ -86,19 +82,19 @@ namespace Web
             a.ShowDialog();
         }
 
-        //图书管理
+        // 图书管理
         private void toolStripButtonBookManager_Click(object sender, EventArgs e)
         {
             this.tabControl.SelectedIndex = 0;
         }
 
-        //读者管理
+        // 读者管理
         private void toolStripButtonReaderManager_Click(object sender, EventArgs e)
         {
             this.tabControl.SelectedIndex = 1;
         }
 
-        //借还管理
+        // 借还管理
         private void toolStripButtonBorrowReturn_Click(object sender, EventArgs e)
         {
             this.tabControl.SelectedIndex = 2;

@@ -1,4 +1,4 @@
-﻿namespace Web
+namespace Web
 {
     partial class BorrowManager_UI
     {
@@ -220,7 +220,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-
         }
 
         #endregion

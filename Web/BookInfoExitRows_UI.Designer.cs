@@ -1,4 +1,4 @@
-﻿namespace Web
+namespace Web
 {
     partial class BookInfoExitRows_UI
     {
@@ -124,7 +124,6 @@
             this.Load += new System.EventHandler(this.BookInfoExitRows_UI_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion

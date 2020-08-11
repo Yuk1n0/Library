@@ -1,4 +1,4 @@
-﻿namespace Web
+namespace Web
 {
     partial class Add
     {
@@ -367,7 +367,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
-
         }
 
         #endregion

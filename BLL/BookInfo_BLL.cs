@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Model;
 using DAL;
+using System.Collections.Generic;
 using System.Data;
 
 namespace BLL
@@ -21,6 +17,7 @@ namespace BLL
         {
             return b.selectBookInfo();
         }
+
         /// <summary>
         /// 查询BookInfo表
         /// </summary>
@@ -30,6 +27,7 @@ namespace BLL
         {
             return b.selectBookInfo(BookId);
         }
+
         /// <summary>
         /// 查询BookInfo表
         /// </summary>
@@ -38,6 +36,7 @@ namespace BLL
         {
             return b.selectBookInfo1();
         }
+
         /// <summary>
         /// 查询BookInfo表带条件
         /// </summary>
@@ -47,6 +46,7 @@ namespace BLL
         {
             return b.selectBookInfo1(index);
         }
+
         /// <summary>
         /// 查询BookInfo表带条件
         /// </summary>
@@ -58,7 +58,7 @@ namespace BLL
             return b.selectBookInfo1(A, B);
         }
 
-        //查询BookInfo表带条件 全部
+        // 查询BookInfo表带条件 全部
         public DataSet selectBookInfo1(List<string> list, string B)
         {
             return b.selectBookInfo1(list, B);
@@ -73,19 +73,20 @@ namespace BLL
         {
             return b.selectBookInfo2(BookId);
         }
-        //修改图书信息
+
+        // 修改图书信息
         public int ExitBookInfo(BookInfo book)
         {
             return b.ExitBookInfo(book);
         }
 
-        //添加图书信息
+        // 添加图书信息
         public int AddBookInfo(BookInfo book)
         {
             return b.AddBookInfo(book);
         }
 
-        //删除图书信息
+        // 删除图书信息
         public int DeleteBookInfo(string BookId)
         {
             return b.DeleteBookInfo(BookId);

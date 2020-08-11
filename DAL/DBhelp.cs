@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Model;
-using System.Data.SqlClient;
-using System.Configuration;
+using System;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace DAL
 {
@@ -13,6 +8,8 @@ namespace DAL
     {
         private DBhelp() { }
         private static DBhelp dbhelp = null;
+        string conString = "Persist Security Info=False;Integrated Security=SSPI;database=Library;server=localhost;Connect Timeout=30";
+
         public static DBhelp Create()
         {
             if (dbhelp == null)
@@ -20,9 +17,7 @@ namespace DAL
             return dbhelp;
         }
 
-        string conString = "Persist Security Info=False;Integrated Security=SSPI;database=Library;server=localhost;Connect Timeout=30";
-
-        //返回一行一列
+        // 返回一行一列
         public int ExecuteScalar(string sql, params SqlParameter[] sp)
         {
             SqlConnection con = new SqlConnection(conString);
@@ -45,7 +40,7 @@ namespace DAL
             }
         }
 
-        //返回读取器对象
+        // 返回读取器对象
         public SqlDataReader ExecuteReader(string sql, params SqlParameter[] sp)
         {
             SqlConnection con = new SqlConnection(conString);
@@ -63,7 +58,7 @@ namespace DAL
             }
         }
 
-        //返回数据集，
+        // 返回数据集，
         public DataSet ExecuteAdater(string sql, params SqlParameter[] sp)
         {
             SqlConnection con = new SqlConnection(conString);
@@ -87,7 +82,7 @@ namespace DAL
             }
         }
 
-        //返回受影响行数
+        // 返回受影响行数
         public int ExecuteNonQuery(string sql, CommandType type = CommandType.Text, params SqlParameter[] sp)
         {
             SqlConnection con = new SqlConnection(conString);

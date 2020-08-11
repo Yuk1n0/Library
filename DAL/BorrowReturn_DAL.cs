@@ -1,17 +1,13 @@
-﻿using Model;
+using Model;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL
 {
     public class BorrowReturn_DAL
     {
-        //查询借还表信息
+        // 查询借还表信息
         public DataSet selectHostory(BorrowReturn b, string radioName, String cboBorrowTimeType, Boolean checkTime)
         {
             string sql = string.Format(@"select BookInfo.BookId as 'BookId',Reader.ReaderId as 'ReaderId',BookName,ReaderName,
@@ -59,11 +55,10 @@ namespace DAL
                     sql += @" and FactReturnTime between '" + b.TimeIn + "' and '" + b.TimeOut + "' ";
                 }
             }
-
             return DBhelp.Create().ExecuteAdater(sql);
         }
 
-        //借还表全部信息 包括现在借阅的和历史借阅的
+        // 借还表全部信息 包括现在借阅的和历史借阅的
         public DataSet AllBorrowReturn()
         {
             string sql = @"select BookInfo.BookId as 'BookId',Reader.ReaderId as 'ReaderId',BookName,ReaderName,
@@ -77,7 +72,7 @@ namespace DAL
             return DBhelp.Create().ExecuteAdater(sql);
         }
 
-        //查询图书借还表（表连接）
+        // 查询图书借还表（表连接）
         public DataSet selectBorrowReturn(string BookId)
         {
             string sql = @"select BookInfo.BookId,BookName,Reader.ReaderId,ReaderName,BorrowTime,ReturnTime,FactReturnTime,Fine,RenewCount,BorrowRemark from BookInfo
@@ -87,11 +82,10 @@ namespace DAL
             SqlParameter[] sp ={
                                    new SqlParameter("@BookId",BookId)
                               };
-
             return DBhelp.Create().ExecuteAdater(sql, sp);
         }
 
-        //读者借阅记录
+        // 读者借阅记录
         public DataSet ReaderBorrowReturn(string ReaderId)
         {
             string sql = @"select BorrowId,Reader.ReaderId as 'ReaderId',ReaderName,BookInfo.BookId as 'BookId',BookName,BorrowTime,ReturnTime,FactReturnTime,Fine,RenewCount,BorrowRemark from Reader
@@ -104,7 +98,7 @@ namespace DAL
             return DBhelp.Create().ExecuteAdater(sql, sp);
         }
 
-        //读者历史借阅记录
+        // 读者历史借阅记录
         public DataSet ReaderBorrowReturn1(string ReaderId)
         {
             string sql = @"select BorrowId,Reader.ReaderId as 'ReaderId',ReaderName,BookInfo.BookId as 'BookId',BookName,BorrowTime,ReturnTime,FactReturnTime,Fine,RenewCount,BorrowRemark from Reader
@@ -117,7 +111,7 @@ namespace DAL
             return DBhelp.Create().ExecuteAdater(sql, sp);
         }
 
-        //还书
+        // 还书
         public int ReturnBook(int BorrowReturnId)
         {
             string sql = @"update BorrowReturn set FactReturnTime=@FactReturnTime,RenewCount=0 where BorrowId=@BorrowId";
@@ -128,7 +122,7 @@ namespace DAL
             return DBhelp.Create().ExecuteNonQuery(sql, sp: sp);
         }
 
-        //借书
+        // 借书
         public int BorrowBook(BorrowReturn b)
         {
             string sql = "proc_BorrowBook";
@@ -150,7 +144,7 @@ namespace DAL
             return (int)sp[sp.Length - 1].Value;
         }
 
-        //续借
+        // 续借
         public int RenewBook(BorrowReturn b)
         {
             string sql = @"update BorrowReturn set ReturnTime=dateadd(month,3,ReturnTime),RenewCount=RenewCount+1 where BorrowId=@BorrowId";

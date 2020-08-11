@@ -1,4 +1,4 @@
-﻿namespace Web
+namespace Web
 {
     partial class BorrowHostory_UI
     {
@@ -207,8 +207,8 @@
             // 
             // dgvHostory
             // 
-            this.dgvHostory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgvHostory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvHostory.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvHostory.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -294,7 +294,6 @@
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHostory)).EndInit();
             this.ResumeLayout(false);
-
         }
 
         #endregion

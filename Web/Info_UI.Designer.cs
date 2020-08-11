@@ -1,4 +1,4 @@
-﻿namespace Web
+namespace Web
 {
     partial class Info_UI
     {
@@ -56,7 +56,6 @@
             this.Load += new System.EventHandler(this.Info_UI_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvInfo)).EndInit();
             this.ResumeLayout(false);
-
         }
 
         #endregion

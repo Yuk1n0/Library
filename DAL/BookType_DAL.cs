@@ -1,11 +1,7 @@
-﻿using Model;
-using System;
+using Model;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL
 {
@@ -26,11 +22,13 @@ namespace DAL
             reader.Close();
             return list;
         }
+
         public DataSet selectBookType1()
         {
             string sql = "select BookTypeId,BookTypeName from BookType";
             return DBhelp.Create().ExecuteAdater(sql);
         }
+
         public int AddBookTypeInfo(BookType type)
         {
             string sql = "proc_AddBookTypeInfo";
@@ -47,7 +45,7 @@ namespace DAL
             return (int)sp[2].Value;
         }
 
-        //删除图书类型
+        // 删除图书类型
         public int deleteBookType(int BookTypeId)
         {
             string sql = @"delete from BorrowReturn where BookId in(select BookId from BookInfo where BookTypeId=@BookTypeId)
@@ -59,7 +57,7 @@ namespace DAL
             return DBhelp.Create().ExecuteNonQuery(sql, sp: sp);
         }
 
-        //修改图书类型
+        // 修改图书类型
         public int updateBookType(BookType type)
         {
             string sql = "update BookType set BookTypeName=@BookTypeName where BookTypeId=@BookTypeId";

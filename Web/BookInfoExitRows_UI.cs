@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 using System.Windows.Forms;
 
 namespace Web
@@ -18,7 +11,6 @@ namespace Web
         }
         public BookInfoManager_UI Book = null;
         public ReaderManager_UI Reader = null;
-
         DataGridViewColumnCollection columns;
 
         private void BookInfoExitRows_UI_Load(object sender, EventArgs e)
@@ -44,7 +36,7 @@ namespace Web
             }
         }
 
-        //左移
+        // 左移
         private void btnLeft_Click(object sender, EventArgs e)
         {
             ListBox.SelectedObjectCollection selectListBox2 = listBox2.SelectedItems;
@@ -61,7 +53,6 @@ namespace Web
             }
 
             ListBox.SelectedIndexCollection indices = listBox2.SelectedIndices;
-
             for (int i = indices.Count - 1; i >= 0; i--)
             {
                 int index = indices[i];
@@ -69,7 +60,7 @@ namespace Web
             }
         }
 
-        //右移
+        // 右移
         private void btnRight_Click(object sender, EventArgs e)
         {
             ListBox.SelectedObjectCollection selectListBox1 = listBox1.SelectedItems;
@@ -90,7 +81,6 @@ namespace Web
             {
                 int index = indices[i];
                 listBox1.Items.RemoveAt(index);
-
             }
         }
 

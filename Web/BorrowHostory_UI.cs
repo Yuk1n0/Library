@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Common;
 using BLL;
+using Common;
 using Model;
+using System;
+using System.Windows.Forms;
 
 namespace Web
 {
@@ -29,8 +22,8 @@ namespace Web
         {
             ((Button)sender).FlatStyle = FlatStyle.Flat;
         }
-        Com com = new Com();
         BorrowReturn_BLL borrowReturn_bll = new BorrowReturn_BLL();
+        Com com = new Com();
 
         private void btnReaderId_Click(object sender, EventArgs e)
         {
@@ -61,7 +54,7 @@ namespace Web
             #endregion
         }
 
-        //当编辑绑定完 DataGridView所有单元格之后，执行绘制引发的事件
+        // 当编辑绑定完 DataGridView所有单元格之后，执行绘制引发的事件
         private void dgvHostory_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             System.Drawing.Rectangle rectangle = new System.Drawing.Rectangle(e.RowBounds.Location.X,
@@ -76,7 +69,7 @@ namespace Web
                 TextFormatFlags.VerticalCenter | TextFormatFlags.Right);
         }
 
-        //CheckBox是否选中打钩 事件
+        // CheckBox是否选中打钩 事件
         private void checkTime_CheckedChanged(object sender, EventArgs e)
         {
             if (checkTime.Checked)
@@ -93,7 +86,7 @@ namespace Web
             }
         }
 
-        //单击查询
+        // 单击查询
         private void btnSelect_Click(object sender, EventArgs e)
         {
             BorrowReturn b = new BorrowReturn();
@@ -103,9 +96,13 @@ namespace Web
             b.TimeOut = dtOut.Value;
             String rdoName = rdoAll.Text;
             if (rdoBorrow.Checked)
+            {
                 rdoName = rdoBorrow.Text;
+            }
             else if (rdoReturn.Checked)
+            {
                 rdoName = rdoReturn.Text;
+            }
             String cboBorrowTimeType = this.cboBorrowTimeType.SelectedItem.ToString();
             bool checkTime = this.checkTime.Checked;
             dgvHostory.DataSource = borrowReturn_bll.selectHostory(b, rdoName, cboBorrowTimeType, checkTime).Tables[0];

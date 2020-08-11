@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Model;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -48,7 +44,7 @@ namespace DAL
             return (int)sp[2].Value;
         }
 
-        //删除班级
+        // 删除班级
         public int deleteClass(int ClassId)
         {
             string sql = @"delete from Reader where ClassId=@ClassId
@@ -59,7 +55,7 @@ namespace DAL
             return DBhelp.Create().ExecuteNonQuery(sql, sp: sp);
         }
 
-        //修改班级
+        // 修改班级
         public int updateClass(Class c)
         {
             string sql = "update Class set ClassName=@ClassName where ClassId=@ClassId";

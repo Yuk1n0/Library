@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Model;
-using System.Data.SqlClient;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace DAL
 {
@@ -46,6 +42,7 @@ namespace DAL
             reader.Close();
             return list;
         }
+
         /// <summary>
         /// 根据ID查询bookinfo表
         /// </summary>
@@ -111,6 +108,7 @@ namespace DAL
                               };
             return DBhelp.Create().ExecuteAdater(sql, sp: sp);
         }
+
         /// <summary>
         /// 根据条件查询bookinfo表
         /// </summary>
@@ -142,6 +140,7 @@ namespace DAL
                             where {0} like '%{1}%'", A, B);
             return DBhelp.Create().ExecuteAdater(sql);
         }
+
         /// <summary>
         /// 查询BookInfo表 带全部查询(表中所有相关的字段)
         /// </summary>
@@ -167,11 +166,10 @@ namespace DAL
                             inner join BookType on BookType.BookTypeId=BookInfo.BookTypeId
                             where {0} like '%{1}%' ", list[i], B);
                 }
-
             }
-
             return DBhelp.Create().ExecuteAdater(sql);
         }
+
         /// <summary>
         /// 添加图书信息
         /// </summary>
@@ -200,6 +198,7 @@ namespace DAL
                               };
             return DBhelp.Create().ExecuteNonQuery(sql, sp: sp);
         }
+
         /// <summary>
         /// 修改图书信息
         /// </summary>
@@ -228,9 +227,9 @@ namespace DAL
                                     new SqlParameter("@BookRemark",book.BookRemark),
                                     new SqlParameter("@BookId",book.BookId)
                               };
-
             return DBhelp.Create().ExecuteNonQuery(sql, sp: sp);
         }
+
         /// <summary>
         /// 根据Id删除
         /// </summary>

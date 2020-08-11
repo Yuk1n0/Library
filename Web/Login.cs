@@ -1,13 +1,6 @@
-﻿using BLL;
+using BLL;
 using Model;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Web
@@ -20,7 +13,7 @@ namespace Web
         }
         Admin_BLL aa = new Admin_BLL();
 
-        //窗体加载
+        // 窗体加载
         private void Login_Load(object sender, EventArgs e)
         {
             cboType.Items.Add("超级管理员");
@@ -28,15 +21,17 @@ namespace Web
             this.cboType.SelectedIndex = 0;
         }
 
-        //取消
+        // 取消
         private void btnClose_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("确定退出吗！", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (result == DialogResult.OK)
+            {
                 Application.Exit();
+            }
         }
 
-        //登录
+        // 登录
         private void btnLongin_Click(object sender, EventArgs e)
         {
             Admin a = new Admin();

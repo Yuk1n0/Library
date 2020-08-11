@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using BLL;
-using Model;
 using Common;
+using Model;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Web
 {
@@ -19,6 +13,7 @@ namespace Web
         {
             InitializeComponent();
         }
+
         private void button3_MouseEnter(object sender, EventArgs e)
         {
             ((Button)sender).FlatStyle = FlatStyle.Standard;
@@ -28,28 +23,26 @@ namespace Web
         {
             ((Button)sender).FlatStyle = FlatStyle.Flat;
         }
-
         public ReaderManager_UI reader = null;
         public string ReaderId = null;
-
-        Reader_BLL reader_bll = new Reader_BLL();
-        ReaderType_BLL readerType_bll = new ReaderType_BLL();
-        Department_BLL department_bll = new Department_BLL();
         Class_BLL class_bll = new Class_BLL();
         Com com = new Com();
+        Department_BLL department_bll = new Department_BLL();
+        Reader_BLL reader_bll = new Reader_BLL();
+        ReaderType_BLL readerType_bll = new ReaderType_BLL();
 
         public void ReaderExit_UI_Load(object sender, EventArgs e)
         {
-            //读者类型的下拉框绑定
+            // 读者类型的下拉框绑定
             cboReaderType.DataSource = readerType_bll.selectReaderType();
             cboReaderType.DisplayMember = "ReaderTypeName";
             cboReaderType.ValueMember = "ReaderTypeId";
 
-            //院系的下拉框绑定
+            // 院系的下拉框绑定
             cboDepartment.DataSource = department_bll.selectDepartment();
             cboDepartment.DisplayMember = "DepartmentName";
             cboDepartment.ValueMember = "DepartmentId";
-            //班级的下拉框绑定
+            // 班级的下拉框绑定
             cboClass.DataSource = class_bll.selectClass();
             cboClass.DisplayMember = "ClassName";
             cboClass.ValueMember = "ClassId";
@@ -97,10 +90,9 @@ namespace Web
             if (reader_bll.updateReader(r) > 0)
             {
                 MessageBox.Show("修改成功！");
-                //单价查询
+                // 单价查询
                 reader.btnSelect_Click(null, null);
-
-                //自动找到刚刚修改成功的行，并选中
+                // 自动找到刚刚修改成功的行，并选中
                 com.AutoFindRow(txtReaderId.Text.Trim(), reader.dgvHeaderInfo);
             }
             else
@@ -109,7 +101,7 @@ namespace Web
             }
         }
 
-        //读者类型编辑
+        // 读者类型编辑
         private void button4_Click(object sender, EventArgs e)
         {
             Add a = new Add();
@@ -119,7 +111,7 @@ namespace Web
             a.ShowDialog();
         }
 
-        //院系编辑
+        // 院系编辑
         private void button3_Click(object sender, EventArgs e)
         {
             Add a = new Add();
@@ -129,7 +121,7 @@ namespace Web
             a.ShowDialog();
         }
 
-        //班级编辑
+        // 班级编辑
         private void button5_Click(object sender, EventArgs e)
         {
             Add a = new Add();
